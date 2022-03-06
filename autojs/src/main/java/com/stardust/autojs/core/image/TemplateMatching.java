@@ -90,6 +90,10 @@ public class TemplateMatching {
             if (previousMatchResult.isEmpty()) {
                 // 如果不是第一次匹配，并且不满足shouldContinueMatching的条件，则直接退出匹配
                 if (!isFirstMatching && !shouldContinueMatching(level, maxLevel)) {
+                    if (src != img)
+                        OpenCVHelper.release(src);
+                    if (currentTemplate != template)
+                        OpenCVHelper.release(currentTemplate);
                     break;
                 }
                 Mat matchResult = matchTemplate(src, currentTemplate, matchMethod);
@@ -127,6 +131,10 @@ public class TemplateMatching {
                 }
                 // 如果所有结果都满足强阈值，则退出循环，返回最终结果
                 if (currentMatchResult.isEmpty()) {
+                    if (src != img)
+                        OpenCVHelper.release(src);
+                    if (currentTemplate != template)
+                        OpenCVHelper.release(currentTemplate);
                     break;
                 }
             }
