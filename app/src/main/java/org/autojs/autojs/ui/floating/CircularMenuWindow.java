@@ -30,8 +30,8 @@ public class CircularMenuWindow extends FloatyWindow {
     protected WindowManager.LayoutParams mMenuWindowLayoutParams;
     protected View.OnClickListener mActionViewOnClickListener;
     protected float mKeepToSideHiddenWidthRadio;
-    protected float mActiveAlpha = 1.0F;
-    protected float mInactiveAlpha = 0.4F;
+    protected float mActiveAlpha = 0.4F;
+    protected float mInactiveAlpha = 0.1F;
     private Context mContext;
     private OrientationEventListener mOrientationEventListener;
 
@@ -196,6 +196,7 @@ public class CircularMenuWindow extends FloatyWindow {
         mCircularActionMenu = mFloaty.inflateMenuItems(service, this);
         mCircularActionView = mFloaty.inflateActionView(service, this);
         mCircularActionMenu.setVisibility(View.GONE);
+        mCircularActionView.setAlpha(mInactiveAlpha);
         getWindowManager().addView(mCircularActionMenu, mActionViewWindowLayoutParams);
         getWindowManager().addView(mCircularActionView, mMenuWindowLayoutParams);
     }
